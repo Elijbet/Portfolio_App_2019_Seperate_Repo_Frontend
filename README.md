@@ -15,9 +15,9 @@ Working [demo app]()
 
 - clone the repo and and navigate to the project directory
 - go to the backend directory and run `rails s`
-- visit http://localhost:3000/contacts to see the json object
+- visit http://localhost:3000/articles to see the json object
 - go to the frontend directory and run `npm run dev`
-- visit http://ocalhost:8080/#/contacts to see the vue app
+- visit http://ocalhost:8080/#/articles to see the vue app
 
 ## Authors
 
