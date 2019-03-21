@@ -1,5 +1,5 @@
-<!-- <template>
- <div id="contacts">
+<template>
+ <div id="design_portfolio_item">
   <div v-for="design_portfolio_item in design_portfolio_items">
    <p>{{design_portfolio_item.title}}</p>
    <p>{{design_portfolio_item.text}}</p>
@@ -22,13 +22,13 @@
 	  }
 	 },
 	 created() {
-	  axios.get('localhost:3000/design_portfolio_items') 
+	  axios.get('http://localhost:3000/design_portfolio_items') 
 	  .then(response => {
-	   this.design_portfolio_itemss = response.data
+	   this.design_portfolio_items = response.data
 	  })
 	 .catch(e => {
 	  this.error.push(e)
 	  })
 	 },
 	}
-</script> -->
+</script>

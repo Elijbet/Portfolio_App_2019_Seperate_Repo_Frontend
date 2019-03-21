@@ -1,8 +1,19 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Kristi" rel="stylesheet">
+    </head>
+
+    <body>
+      <div id="app">
+        <router-view/>
+      </div>
+    </body>
+
+  </html>
 </template>
 
 <script>

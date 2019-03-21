@@ -1,5 +1,5 @@
 <template>
- <div id="contacts">
+ <div id="article">
   <div v-for="article in articles">
    <p>{{article.title}}</p>
    <p>{{article.text}}</p>
@@ -20,7 +20,7 @@
 	  }
 	 },
 	 created() {
-	  axios.get('localhost:3000/articles') 
+	  axios.get('http://localhost:3000/articles') 
 	  .then(response => {
 	   this.articles = response.data
 	  })
