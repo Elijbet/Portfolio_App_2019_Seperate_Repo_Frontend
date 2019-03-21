@@ -33,7 +33,7 @@ Eliza Khachatryan
 * The blog should have a code editor for me to use: a rich editor for text such as Quill.
 * Authentication service, to allow me access to my portfolio and allow others to use the blog.
 * Both the blog and the portfolio should have a comments section for logged in users and guests.
-* Nested comments for discussions.
+* Nested comments for discussions, look at Disqus.
 * Both the blog and the portfolio should make possible to upload images.
 * Both sections should allow for social media posts.
 * A nice landing page design. 
