@@ -25,6 +25,10 @@ Eliza Khachatryan
 
 ## Project Roadmap
 
+#### Features:
+
+* Vue.js Material Component Framework — Vuetify.js
+
 #### Things I want to accomplish:
 
 * Build and portfolio and blog site.
@@ -37,3 +41,4 @@ Eliza Khachatryan
 * Both the blog and the portfolio should make possible to upload images.
 * Both sections should allow for social media posts.
 * A nice landing page design. 
+* Search bar for blog from Vuetify.
