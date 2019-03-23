@@ -25,9 +25,17 @@
                 v-model.lazy="blog.content"
               ></v-textarea>
             </v-flex>
+            <label class="form-title-font">Image</label>
+            <v-flex class="form-width">
+              <input  type="file" 
+                      id="file" 
+                      ref="myFiles" 
+                      class="custom-file-input" 
+                      @change="takeFile" multiple>
+            </v-flex>
             <v-flex class="form-width btn-alignment">
               <v-btn  outline 
-                      color="indigo"
+                      color="#1976d2"
                       @click="submitArticle(blog)">
                 Submit Blog Post
               </v-btn>
@@ -47,15 +55,20 @@ import axios from 'axios'
       return {
         blog: {
           title: '',
-          content: ''
+          content: '',
+          link: ''
         }
       }
     },
     methods: {
       submitArticle(blog) {
+        console.log('blog.link', blog.link)
         axios.post('http://localhost:3000/articles', {
           title: blog.title,
-          text: blog.content
+          text: blog.content,
+          image: {
+            url: blog.link 
+          }
         })
         .then(function (response) {
           console.log(response);
@@ -63,6 +76,10 @@ import axios from 'axios'
         .catch(function (error) {
           console.log(error);
         });
+      },
+      takeFile(event) {
+        console.log(this.$refs.myFiles.files);
+        this.blog.link = this.$refs.myFiles.files
       }
     }
   }

@@ -27,7 +27,12 @@ Eliza Khachatryan
 
 #### Features:
 
-* Vue.js Material Component Framework — Vuetify.js
+* Vue.js Material Component Framework — Vuetify.js.
+* Rails API to handle articles, design portfolio items, and code portfolio items.
+* Carrierwave for uploading images.
+* Landing Page in Vue with a Toolbar routed to respective pages.
+* Preliminary pages
+* Add a New Blog Post form that posts to the backend.
 
 #### Things I want to accomplish:
 
@@ -43,4 +48,5 @@ Eliza Khachatryan
 * A nice landing page design. 
 * Articles page to have a navbar with 'new post' and search bar from Vuetify.
 * Form validations.
+* Carrierwave upload an image from vue front to rails api.
 
