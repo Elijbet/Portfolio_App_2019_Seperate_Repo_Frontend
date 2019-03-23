@@ -41,4 +41,6 @@ Eliza Khachatryan
 * Both the blog and the portfolio should make possible to upload images.
 * Both sections should allow for social media posts.
 * A nice landing page design. 
-* Search bar for blog from Vuetify.
+* Articles page to have a navbar with 'new post' and search bar from Vuetify.
+* Form validations.
+

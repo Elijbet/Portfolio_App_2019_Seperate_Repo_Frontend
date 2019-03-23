@@ -81,7 +81,7 @@
 		background-size: 100%;
 		width: 100%;
 		position: absolute;
-		top: 60px;
+		top: 65px;
 		bottom: 0;
 	}
 	.font-2 {
@@ -93,9 +93,9 @@
 		font-size: 2rem;
 	}
 	.font-3 {
-		font-family: 'Londrina Shadow', cursive;
+		font-family: 'Kristi', cursive;
 		font-size: 3rem;
-		color: #657461;
+		color:  #2C3E50 !important;
 	}
 	.landing-flex {
 		display: flex;
