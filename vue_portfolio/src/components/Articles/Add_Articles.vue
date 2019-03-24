@@ -25,26 +25,28 @@
                 v-model.lazy="blog.content"
               ></v-textarea>
             </v-flex>
-            <div class="form-width submit-row">
-              <label class="file-select">
-                <div  class="select-button">
-                    <i class="material-icons">
-                      add_a_photo
-                    </i>
-                </div>
-                <input  type="file" 
-                        id="file" 
-                        ref="myFiles" 
-                        class="custom-file-input" 
-                        @change="takeFile" multiple>
-              </label>
-              <v-btn  outline 
-                      color="#1976d2"
-                      @click="submitArticle(blog)"
-                      >
-                Submit Blog Post
-              </v-btn>
-            </div>
+            <v-layout justify-end>
+              <div class="align-buttons">
+                <label class="file-select">
+                  <div  class="select-button">
+                      <i class="material-icons">
+                        add_a_photo
+                      </i>
+                  </div>
+                  <input  type="file" 
+                          id="file" 
+                          ref="myFiles" 
+                          class="custom-file-input" 
+                          @change="takeFile" multiple>
+                </label>
+                <v-btn  outline 
+                        color="#1976d2"
+                        @click="submitArticle(blog)"
+                        >
+                  Submit Blog Post
+                </v-btn>
+              </div>
+            </v-layout>
           </v-layout>
         </v-container>
       </v-form>
@@ -134,8 +136,9 @@ import axios from 'axios'
   .file-select > input[type="file"] {
     display: none;
   }
-  .submit-row {
+  .align-buttons {
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
   }
 </style>
