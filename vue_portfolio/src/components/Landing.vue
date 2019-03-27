@@ -33,6 +33,13 @@
 							BLOG
 						</router-link>
 	        </v-btn>
+	        <v-btn flat class="link-size">
+	        	<router-link 
+							class="design-link"
+							:to="{ path: 'Signin' }">
+							Signin
+						</router-link>
+	        </v-btn>
 	        <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
 	      </v-toolbar-items>
 	    </v-toolbar>

@@ -6,6 +6,9 @@ import Add_Articles from '@/components/Articles/Add_Articles'
 import Design_Portfolio_Items from '@/components/Design_Portfolio_Items'
 import Code_Portfolio_Items from '@/components/Code_Portfolio_Items'
 import About from '@/components/About'
+import Signin from '@/components/Signin'
+import Signup from '@/components/Signup'
+
 
 Vue.use(Router)
 
@@ -40,6 +43,16 @@ export default new Router({
 	    path: '/add_articles',
 	    name: 'Add_Articles',
 	    component: Add_Articles
-	  }
+	  },
+	  {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    }
   ]
 })

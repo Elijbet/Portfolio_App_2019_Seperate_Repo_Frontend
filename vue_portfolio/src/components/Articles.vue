@@ -8,6 +8,8 @@
   <div v-for="article in articles">
    <p>{{article.title}}</p>
    <p>{{article.text}}</p>
+   <!-- {{article.image.url}} -->
+   <img :src="article.image.url"></img>
   </div>
  </div>
 </template>
@@ -19,8 +21,6 @@
 	 data() {
 	  return {
 	   articles: [],
-	   title: [],
-	   text: [],
 	   errors: []
 	  }
 	 },
