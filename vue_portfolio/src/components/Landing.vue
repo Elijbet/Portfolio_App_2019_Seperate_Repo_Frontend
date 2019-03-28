@@ -8,43 +8,43 @@
 	      	<v-btn flat class="link-size">
 	      		<router-link 
 							class="design-link"
-							:to="{ path: 'About' }">
+							:to="{ name: 'About' }">
 							About
 						</router-link>
 	      	</v-btn>
 	        <v-btn flat class="link-size">
 	        	<router-link 
 							class="design-link"
-							:to="{ path: 'Design_Portfolio_Items' }">
+							:to="{ name: 'Design_Portfolio_Items' }">
 							DESIGN
 						</router-link>	
 	       	</v-btn>
 	        <v-btn flat class="link-size">
 	        	<router-link 
 							class="design-link"
-							:to="{ path: 'Code_Portfolio_Items' }">
+							:to="{ name: 'Code_Portfolio_Items' }">
 							{CODE}
 						</router-link>
 	        </v-btn>
-	        <v-btn flat class="link-size">
+	        <v-btn flat class="link-size special">
 	        	<router-link 
 							class="design-link"
-							:to="{ path: 'Articles' }">
+							:to="{ name: 'Articles' }">
 							BLOG
 						</router-link>
 	        </v-btn>
-	        <v-btn flat class="link-size">
-	        	<router-link 
+	        <!-- <v-btn flat class="link-size"> -->
+<!-- 	        	<router-link 
 							class="design-link"
 							:to="{ path: 'Signin' }">
 							Signin
-						</router-link>
-	        </v-btn>
-	        <v-btn flat class="link-size">
+						</router-link> -->
+	        <!-- </v-btn> -->
+	        <!-- <v-btn flat class="link-size">
 	        	<div class="sign-out float-right">
 						  <span @click="signOut">Sign out</span>
 						</div>
-	        </v-btn>
+	        </v-btn> -->
 	        <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
 	      </v-toolbar-items>
 	    </v-toolbar>
@@ -79,15 +79,15 @@
 <script>
 	export default {
 		methods: {
-			signOut () {
-			  this.$http.secured.delete('/signin')
-			    .then(response => {
-			      delete localStorage.csrf
-			      delete localStorage.signedIn
-			      this.$router.replace('/')
-			     })
-			     .catch(error => this.setError(error, 'Cannot sign out'))
-			}
+			// signOut () {
+			//   this.$http.secured.delete('/signin')
+			//     .then(response => {
+			//       delete localStorage.csrf
+			//       delete localStorage.signedIn
+			//       this.$router.replace('/')
+			//      })
+			//      .catch(error => this.setError(error, 'Cannot sign out'))
+			// }
 		}
 	}
 </script>
@@ -140,5 +140,8 @@
 	}
 	.link-size {
 		font-size: 1rem;
+	}
+	.special {
+		background-color: #EBCFCB
 	}
 </style>

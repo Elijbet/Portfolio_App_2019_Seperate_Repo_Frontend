@@ -22,13 +22,18 @@
 	  }
 	 },
 	 created() {
-	  axios.get('http://localhost:3000/code_portfolio_items') 
-	  .then(response => {
-	   this.code_portfolio_items = response.data
-	  })
-	 .catch(e => {
-	  this.error.push(e)
-	  })
-	 },
+		 	if (!localStorage.signedIn) {
+	      this.$router.replace('/')
+	    } else {
+	      this.$http.secured.get('/code_portfolio_items')
+	        .then(response => { this.code_portfolio_items = response.data })
+	        .catch(error => this.setError(error, 'Something went wrong'))
+	    }
+	  },
+	  methods: {
+	    setError (error, text) {
+	      this.error = (error.response && error.response.data && error.response.data.error) || text
+	    },
+	  },
 	}
 </script>

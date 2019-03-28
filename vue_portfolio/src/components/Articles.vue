@@ -1,5 +1,6 @@
 <template>
  <div id="article">
+ 	<ArticlesHeader></ArticlesHeader>
  	<router-link 
 		class="design-link"
 		:to="{ path: 'Add_Articles' }">
@@ -15,7 +16,8 @@
 </template>
 
 <script>
-	import axios from 'axios'
+	// import axios from 'axios'
+	import ArticlesHeader from '@/components/Articles/ArticlesHeader'
 
 	export default {
 	 data() {
@@ -37,6 +39,7 @@
 	    setError (error, text) {
 	      this.error = (error.response && error.response.data && error.response.data.error) || text
 	    },
-	  }
+	  },
+	  components: { ArticlesHeader }
 	}
 </script>

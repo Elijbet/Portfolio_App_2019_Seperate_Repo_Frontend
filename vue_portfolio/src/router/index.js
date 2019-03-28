@@ -8,6 +8,7 @@ import Code_Portfolio_Items from '@/components/Code_Portfolio_Items'
 import About from '@/components/About'
 import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
+import UsersList from '@/components/admin/users/List'
 
 
 Vue.use(Router)
@@ -53,6 +54,11 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/admin/users',
+      name: 'UsersList',
+      component: UsersList
     }
   ]
 })
