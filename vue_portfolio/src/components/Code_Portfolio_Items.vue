@@ -22,13 +22,9 @@
 	  }
 	 },
 	 created() {
-		 	if (!localStorage.signedIn) {
-	      this.$router.replace('/')
-	    } else {
-	      this.$http.secured.get('/code_portfolio_items')
-	        .then(response => { this.code_portfolio_items = response.data })
-	        .catch(error => this.setError(error, 'Something went wrong'))
-	    }
+	  this.$http.secured.get('/code_portfolio_items')
+	    .then(response => { this.code_portfolio_items = response.data })
+	    .catch(error => this.setError(error, 'Something went wrong'))
 	  },
 	  methods: {
 	    setError (error, text) {

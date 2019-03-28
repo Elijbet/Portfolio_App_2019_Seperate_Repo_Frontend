@@ -27,13 +27,9 @@
 	  }
 	 },
 	 created() {
-		 	if (!localStorage.signedIn) {
-	      this.$router.replace('/')
-	    } else {
-	      this.$http.secured.get('/articles')
-	        .then(response => { this.articles = response.data })
-	        .catch(error => this.setError(error, 'Something went wrong'))
-	    }
+    this.$http.secured.get('/articles')
+      .then(response => { this.articles = response.data })
+      .catch(error => this.setError(error, 'Something went wrong'))
 	  },
 	  methods: {
 	    setError (error, text) {
