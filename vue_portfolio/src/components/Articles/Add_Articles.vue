@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
   export default {
     data() {
@@ -73,15 +73,16 @@ import axios from 'axios'
         formData.append("article[title]", blog.title)
         formData.append("article[text]", blog.content)
         formData.append("article[image]", blog.link)
-        axios.post('http://localhost:3000/articles', formData, {
+        this.$http.secured.post('http://localhost:3000/articles', formData, {
           headers: {
             'Content-Type': 'application/json'
           }
         }).then(function (response) {
           console.log(response)
-        }).catch(function (error) {
-          console.log(error)
-        })
+        }).catch(error => this.setError(error, 'Cannot create article'))
+      },
+      setError (error, text) {
+        this.error = (error.response && error.response.data && error.response.data.error) || text
       },
       takeFile(event) { 
         this.blog.link = this.$refs.myFiles.files[0]

@@ -4,6 +4,7 @@
    <p>{{design_portfolio_item.title}}</p>
    <p>{{design_portfolio_item.text}}</p>
    <p>{{design_portfolio_item.date}}</p>
+   <p>{{design_portfolio_item.user.email}}</p>
   </div>
  </div>
 </template>

@@ -60,7 +60,7 @@ export default {
     },
     checkSignedIn () {
       if (localStorage.signedIn) {
-        this.$router.replace('/todos')
+        this.$router.replace('/landing')
       }
     }
   }

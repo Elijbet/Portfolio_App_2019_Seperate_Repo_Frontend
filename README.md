@@ -40,7 +40,7 @@ Eliza Khachatryan
 * Document the process so I can post it on the blog as a tutorial for others to use.
 * This is going to be a very long blog, so post the blog in sections and have a table of contents linking to all articles.
 * The blog should have a code editor for me to use: a rich editor for text such as Quill.
-* Authentication service, to allow me access to my portfolio and allow others to use the blog.
+* Authentication with JWT, to allow me access to my portfolio and allow others to use the blog.
 * Both the blog and the portfolio should have a comments section for logged in users and guests.
 * Nested comments for discussions, look at Disqus.
 * Both the blog and the portfolio should make possible to upload images.

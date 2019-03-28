@@ -40,6 +40,11 @@
 							Signin
 						</router-link>
 	        </v-btn>
+	        <v-btn flat class="link-size">
+	        	<div class="sign-out float-right">
+						  <span @click="signOut">Sign out</span>
+						</div>
+	        </v-btn>
 	        <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
 	      </v-toolbar-items>
 	    </v-toolbar>
@@ -73,7 +78,17 @@
 
 <script>
 	export default {
-		
+		methods: {
+			signOut () {
+			  this.$http.secured.delete('/signin')
+			    .then(response => {
+			      delete localStorage.csrf
+			      delete localStorage.signedIn
+			      this.$router.replace('/')
+			     })
+			     .catch(error => this.setError(error, 'Cannot sign out'))
+			}
+		}
 	}
 </script>
 <style scoped>
