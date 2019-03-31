@@ -7,6 +7,13 @@
                     Home
         </router-link>
       </v-btn>
+      <v-btn flat class="link-size">
+        <router-link 
+          class="design-link"
+          :to="{ path: 'Add_Articles' }">
+          Add a new Blog Post
+        </router-link>
+      </v-btn>
     </ul>
     <ul class="navbar ml-auto">
       <v-btn flat class="link-size">
