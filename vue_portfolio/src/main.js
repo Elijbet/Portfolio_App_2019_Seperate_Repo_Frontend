@@ -8,6 +8,14 @@ import { store } from './store'
 import VueAxios from 'vue-axios'
 import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
 import 'vuetify/dist/vuetify.min.css'
+import VueQuillEditor from 'vue-quill-editor'
+
+Vue.use(VueQuillEditor, /* { default global options } */)
+
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 Vue.use(Vuetify)
 
