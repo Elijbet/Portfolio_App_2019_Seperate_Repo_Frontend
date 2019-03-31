@@ -15,9 +15,10 @@
                 v-model.lazy="blog.title"
               ></v-text-field>
             </v-flex>
-            <div class="quill-code">
-              <pre><code class="hljs" v-html="contentCode"></code></pre>
-            </div>
+            <!-- <div class="quill-code">
+              <code class="hljs" v-html="contentCode"></code>
+            </div> -->
+            <div v-html="content"></div>
             <label class="form-title-font">Blog Content</label>
             <v-flex class="form-width">
               <quill-editor ref="myTextEditor"
