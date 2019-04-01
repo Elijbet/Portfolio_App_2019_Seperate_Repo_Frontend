@@ -18,19 +18,19 @@
             <!-- <div class="quill-code">
               <code class="hljs" v-html="contentCode"></code>
             </div> -->
-            <div v-html="content"></div>
+            
             <label class="form-title-font">Blog Content</label>
             <v-flex class="form-width">
               <quill-editor ref="myTextEditor"
-                      v-model="content"
+                      v-model.lazy="blog.content"
                       :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
                       @ready="onEditorReady($event)">
               </quill-editor>
             </v-flex>
-            <label class="form-title-font">Blog Content</label>
-            <v-flex class="form-width">
+            <!-- <label class="form-title-font">Blog Content</label> -->
+            <!-- <v-flex class="form-width">
               <v-textarea
                 outline
                 name="input-7-4"
@@ -38,7 +38,7 @@
                 value="This blog post is going to make me world popular. And also, notorious."
                 v-model.lazy="blog.content"
               ></v-textarea>
-            </v-flex>
+            </v-flex> -->
             <v-layout justify-end>
               <div class="align-buttons">
                 <label class="file-select">
@@ -113,7 +113,7 @@
     mounted() {
       console.log('this is my editor', this.editor)
       setTimeout(() => {
-        this.content = `<h1 class="ql-align-center">
+        this.blog.content = `<h1 class="ql-align-center">
                           <span class="ql-font-serif" style="background-color: rgb(240, 102, 102); color: rgb(255, 255, 255);"> I am Example 1! </span>
                         </h1>
                         <p><br></p>
@@ -146,7 +146,7 @@
         return this.$refs.myTextEditor.quill
       },
       contentCode() {
-        return hljs.highlightAuto(this.content).value
+        return hljs.highlightAuto(this.blog.content).value
       }
     },
     methods: {
@@ -183,7 +183,7 @@
   
 </script>
 
-<style>
+<style scoped>
   .form-style {
     display: flex;
     justify-content: center;
@@ -237,6 +237,9 @@
     border: none;
     height: auto;
   }
+  .text-align {
+    text-align: left;
+  }
   code {
     width: 100%;
     margin: 0;
@@ -249,4 +252,15 @@
     resize: vertical;
   }
 
+</style>
+<style>
+  .ql-align-center {
+    text-align: center;
+  }
+  iframe.ql-video.ql-align-center {
+    margin: 0 auto !important;
+  }
+  .ql-align-right {
+    text-align: right;
+  }
 </style>

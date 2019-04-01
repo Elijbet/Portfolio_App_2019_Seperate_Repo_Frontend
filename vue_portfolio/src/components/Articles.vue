@@ -1,22 +1,34 @@
 <template>
- <div id="article">
- 	<ArticlesHeader></ArticlesHeader>
- 	<router-link 
-		class="design-link"
-		:to="{ path: 'Add_Articles' }">
-		Add a new Blog Post
-	</router-link>
-  <div v-for="article in articles">
-   <p>{{article.title}}</p>
-   <p>{{article.text}}</p>
-   <!-- {{article.image.url}} -->
-   <img :src="article.image.url"></img>
-  </div>
- </div>
+	<div>
+		<ArticlesHeader></ArticlesHeader>
+		<v-layout id="article">
+	    <v-flex xs2 sm3 offset-sm1 v-for="article in articles" class="spacing">
+	      <v-card>
+	        <v-img
+	          :src="article.image.url"
+	          aspect-ratio="2.75"
+	        ></v-img>
+
+	        <v-card-title primary-title>
+	          <div>
+	            <h3 class="headline mb-0">{{article.title}}</h3>
+	            <v-flex class="form-width text-align">
+						    <div v-html="article.text"></div>
+						  </v-flex>
+	          </div>
+	        </v-card-title>
+
+	        <v-card-actions>
+	          <v-btn flat color="orange">Share</v-btn>
+	          <v-btn flat color="orange">Explore</v-btn>
+	        </v-card-actions>
+	      </v-card>
+	    </v-flex>
+	  </v-layout>
+	</div>
 </template>
 
 <script>
-	// import axios from 'axios'
 	import ArticlesHeader from '@/components/Articles/ArticlesHeader'
 
 	export default {
@@ -39,3 +51,35 @@
 	  components: { ArticlesHeader }
 	}
 </script>
+<style scoped>
+	.form-width {
+    width: 50%;
+    padding: 0 !important;
+  }
+  .text-align {
+    text-align: left;
+  }
+  .spacing {
+  	height: 20%;
+  	margin-bottom: 3%;
+  }
+  .layout {
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	align-items: center;
+  }
+  .flex.offset-sm1 {
+    margin-left: 2%;
+	}
+</style>
+<style>
+  .ql-align-center {
+    text-align: center;
+  }
+  iframe.ql-video.ql-align-center {
+    margin: 0 auto !important;
+  }
+  .ql-align-right {
+    text-align: right;
+  }
+</style>
