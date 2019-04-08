@@ -3,7 +3,7 @@
 		<v-app id="inspire">
       <v-form>
         <v-container>
-          <v-layout column wrap form-style fill-height>
+          <v-layout column form-style fill-height>
             <v-flex class="form-width">
               <div class="font-2">Add New Blog Post</div>
             </v-flex>
@@ -13,12 +13,9 @@
                 label="Outline"
                 outline
                 v-model.lazy="blog.title"
+                :rules="[rules.required]"
               ></v-text-field>
             </v-flex>
-            <!-- <div class="quill-code">
-              <code class="hljs" v-html="contentCode"></code>
-            </div> -->
-            
             <label class="form-title-font">Blog Content</label>
             <v-flex class="form-width">
               <quill-editor ref="myTextEditor"
@@ -29,17 +26,7 @@
                       @ready="onEditorReady($event)">
               </quill-editor>
             </v-flex>
-            <!-- <label class="form-title-font">Blog Content</label> -->
-            <!-- <v-flex class="form-width">
-              <v-textarea
-                outline
-                name="input-7-4"
-                label="Outline textarea"
-                value="This blog post is going to make me world popular. And also, notorious."
-                v-model.lazy="blog.content"
-              ></v-textarea>
-            </v-flex> -->
-            <v-layout justify-end>
+            <v-layout justify-end margin-buttons>
               <div class="align-buttons">
                 <label class="file-select">
                   <div  class="select-button">
@@ -56,6 +43,7 @@
                 <v-btn  outline 
                         color="#1976d2"
                         @click="submitArticle(blog)"
+                        :disabled= "emptyContent"
                         >
                   Submit Blog Post
                 </v-btn>
@@ -107,6 +95,9 @@
             }
           },
           theme: 'snow'
+        },
+        rules: {
+          required: value => !!value || 'Required.'
         }
       }
     },
@@ -147,6 +138,13 @@
       },
       contentCode() {
         return hljs.highlightAuto(this.blog.content).value
+      },
+      emptyContent(){
+        if(this.blog.title.length == 0 || this.blog.content.replace(/(<([^>]+)>)/ig,"").length == 0 ) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     methods: {
@@ -160,17 +158,19 @@
         console.log('editor ready!', editor)
       },
       submitArticle(blog) {
-        let formData = new FormData()
-        formData.append("article[title]", blog.title)
-        formData.append("article[text]", blog.content)
-        formData.append("article[image]", blog.link)
-        this.$http.secured.post('http://localhost:3000/articles', formData, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(function (response) {
-          console.log(response)
-        }).catch(error => this.setError(error, 'Cannot create article'))
+        if(!this.emptyContent){
+          let formData = new FormData()
+          formData.append("article[title]", blog.title)
+          formData.append("article[text]", blog.content)
+          formData.append("article[image]", blog.link)
+          this.$http.secured.post('http://localhost:3000/articles', formData, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).then(function (response) {
+            console.log(response)
+          }).catch(error => this.setError(error, 'Cannot create article'))
+        }
       },
       setError (error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
@@ -184,6 +184,9 @@
 </script>
 
 <style scoped>
+  .margin-buttons {
+    margin-top: 30px;
+  }
   .form-style {
     display: flex;
     justify-content: center;
@@ -251,7 +254,7 @@
     overflow-y: auto;
     resize: vertical;
   }
-
+  
 </style>
 <style>
   .ql-align-center {
@@ -262,5 +265,9 @@
   }
   .ql-align-right {
     text-align: right;
+  }
+  .quill-editor {
+    border: 2px solid rgba(0,0,0,.54);
+    border-radius: 4px;
   }
 </style>

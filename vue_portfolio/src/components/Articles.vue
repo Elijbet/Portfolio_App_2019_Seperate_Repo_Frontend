@@ -82,4 +82,9 @@
   .ql-align-right {
     text-align: right;
   }
+  img {
+	  object-fit: cover;
+	  width: 460px;
+	  height: 460px;
+  }
 </style>
