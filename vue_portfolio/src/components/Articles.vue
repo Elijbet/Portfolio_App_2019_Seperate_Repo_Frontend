@@ -10,17 +10,23 @@
 	        ></v-img>
 
 	        <v-card-title primary-title>
-	          <div>
-	            <h3 class="headline mb-0">{{article.title}}</h3>
-	            <v-flex class="form-width text-align">
-						    <div v-html="article.text"></div>
+	          <div class="full-width">
+	            <h3 class="headline mb-0">{{article.title | truncate(23, '...')}}</h3>
+	            <v-flex class="text-align">
+						    <div v-html="truncatedArticleText(article.text)">
+						    </div>
 						  </v-flex>
 	          </div>
 	        </v-card-title>
 
 	        <v-card-actions>
 	          <v-btn flat color="orange">Share</v-btn>
-	          <v-btn flat color="orange">Explore</v-btn>
+	          <v-btn flat color="orange">
+	          	<router-link 
+			          :to="{ path: `/articles/${article.id}` }">
+			          Explore
+			        </router-link>
+	        	</v-btn>
 	        </v-card-actions>
 	      </v-card>
 	    </v-flex>
@@ -47,11 +53,35 @@
 	    setError (error, text) {
 	      this.error = (error.response && error.response.data && error.response.data.error) || text
 	    },
+	    truncatedArticleText(html){
+	    	if(html !== null){
+		    	let text = html.replace(/(<([^>]+)>)/ig,"")
+		    	let value = this.$options.filters.truncate(text, 70)
+		    	if (value.length < 30) {
+		    		let styledValue =  value + "<br/>" + "&nbsp;"
+		    		console.log('styledValue', styledValue)
+		    		return styledValue
+		    	} else {
+		    		return value
+		    	}
+			  }
+	    }
 	  },
+	  filters: {
+      truncate: function (text, length, suffix) {
+      	// console.log('text', text)
+      	if(text !== null){
+        	return text.substring(0, length) + suffix;
+        }
+      },
+    },
 	  components: { ArticlesHeader }
 	}
 </script>
 <style scoped>
+	.full-width {
+		width: 100%;
+	}
 	.form-width {
     width: 50%;
     padding: 0 !important;
@@ -71,6 +101,9 @@
   .flex.offset-sm1 {
     margin-left: 2%;
 	}
+	.headline {
+		text-align: left;
+	}
 </style>
 <style>
   .ql-align-center {
@@ -84,7 +117,8 @@
   }
   img {
 	  object-fit: cover;
-	  width: 460px;
-	  height: 460px;
+	  width: 260px;
+	  height: 260px;
   }
+  iframe { width: 100%; }
 </style>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Landing from '@/components/Landing'
 import Articles from '@/components/Articles'
 import Add_Articles from '@/components/Articles/Add_Articles' 
+import Explore_Article from '@/components/Articles/Explore_Article' 
 import Design_Portfolio_Items from '@/components/Design_Portfolio_Items'
 import Code_Portfolio_Items from '@/components/Code_Portfolio_Items'
 import About from '@/components/About'
@@ -59,6 +60,11 @@ export default new Router({
       path: '/admin/users',
       name: 'UsersList',
       component: UsersList
+    },
+    {
+      path: '/articles/:id',
+      name: 'Explore_Article',
+      component: Explore_Article
     }
   ]
 })
