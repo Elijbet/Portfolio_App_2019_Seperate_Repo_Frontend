@@ -10,7 +10,7 @@
             <label class="form-title-font">Blog Title</label>
             <v-flex class="form-width">
               <v-text-field
-                label="Outline"
+                label="Add New Blog Title"
                 outline
                 v-model.lazy="blog.title"
                 :rules="[rules.required]"
@@ -23,8 +23,13 @@
                       :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
-                      @ready="onEditorReady($event)">
+                      @ready="onEditorReady($event)"
+                      :class="{'error--outline': emptyContent}">
               </quill-editor>
+              <div  :class="{'error-message': emptyContent}"
+                    v-if="emptyContent">
+                Required.
+              </div>
             </v-flex>
             <v-layout justify-end margin-buttons>
               <div class="align-buttons">
@@ -43,7 +48,7 @@
                 <v-btn  outline 
                         color="#1976d2"
                         @click="submitArticle(blog)"
-                        :disabled= "emptyContent"
+                        :disabled= "emptyTitleContent"
                         >
                   Submit Blog Post
                 </v-btn>
@@ -71,7 +76,6 @@
           content: '',
           link: ''
         },
-        content: '<h2>I am Example</h2>',
         editorOption: {
           modules: {
             toolbar: [
@@ -94,7 +98,8 @@
               highlight: text => hljs.highlightAuto(text).value
             }
           },
-          theme: 'snow'
+          placeholder: 'Compose an epic...',
+          theme: 'snow',
         },
         rules: {
           required: value => !!value || 'Required.'
@@ -103,8 +108,7 @@
     },
     mounted() {
       console.log('this is my editor', this.editor)
-      setTimeout(() => {
-        this.blog.content = `<h1 class="ql-align-center">
+      this.blog.content = `<h1 class="ql-align-center">
                           <span class="ql-font-serif" style="background-color: rgb(240, 102, 102); color: rgb(255, 255, 255);"> I am Example 1! </span>
                         </h1>
                         <p><br></p>
@@ -130,7 +134,6 @@
                         <p><br></p>
                         <p><span class="ql-font-serif">The things we love destroy us every time.</span></p>
                         `
-      }, 1300)
     },
     computed: {
       editor() {
@@ -140,6 +143,13 @@
         return hljs.highlightAuto(this.blog.content).value
       },
       emptyContent(){
+        if(this.blog.content.replace(/(<([^>]+)>)/ig,"").length == 0 ) {
+          return true
+        } else {
+          return false
+        }
+      },
+      emptyTitleContent(){
         if(this.blog.title.length == 0 || this.blog.content.replace(/(<([^>]+)>)/ig,"").length == 0 ) {
           return true
         } else {
@@ -158,7 +168,7 @@
         console.log('editor ready!', editor)
       },
       submitArticle(blog) {
-        if(!this.emptyContent){
+        if(!this.emptyTitleContent){
           let formData = new FormData()
           formData.append("article[title]", blog.title)
           formData.append("article[text]", blog.content)
@@ -184,6 +194,9 @@
 </script>
 
 <style scoped>
+  .error--outline {
+    border-color: #ff5252;
+  }
   .margin-buttons {
     margin-top: 30px;
   }
@@ -254,7 +267,13 @@
     overflow-y: auto;
     resize: vertical;
   }
-  
+  .error-message {
+    font-size: 12px;
+    color: #ff5252;
+    line-height: 28px;
+    text-align: left;
+    margin-left: 12px;
+  }
 </style>
 <style>
   .ql-align-center {
