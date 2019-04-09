@@ -4,17 +4,15 @@
 		<v-layout id="article">
 	    <v-flex xs2 sm3 offset-sm1 v-for="article in articles" class="spacing">
 	      <v-card>
-	        <v-img
-	          :src="article.image.url"
-	          aspect-ratio="2.75"
-	        ></v-img>
-
+					
 	        <v-card-title primary-title>
 	          <div class="full-width">
 	            <h3 class="headline mb-0">{{article.title | truncate(23, '...')}}</h3>
 	            <v-flex class="text-align">
 						    <div v-html="truncatedArticleText(article.text)">
 						    </div>
+						    <div v-if="imgTag" v-html="imgTag"></div>
+						    <img v-else src="../assets/picture_not_available.png"></img>
 						  </v-flex>
 	          </div>
 	        </v-card-title>
@@ -41,11 +39,12 @@
 	 data() {
 	  return {
 	   articles: [],
-	   errors: []
+	   errors: [],
+	   imgTag: '',
 	  }
 	 },
 	 created() {
-    this.$http.secured.get('/articles')
+    this.$http.plain.get('/articles')
       .then(response => { this.articles = response.data })
       .catch(error => this.setError(error, 'Something went wrong'))
 	  },
@@ -55,6 +54,15 @@
 	    },
 	    truncatedArticleText(html){
 	    	if(html !== null){
+	    		this.imgTag = ''
+	    		//Retrieve image from the html content
+	    		let regex = /<img([\w\W]+?)[\/]?>/;
+          let imgTagArray = html.match(regex)
+          if (imgTagArray) {
+          	this.imgTag = imgTagArray[0]
+          	console.log('this.imgTag', this.imgTag)
+          }
+          
 		    	let text = html.replace(/(<([^>]+)>)/ig,"")
 		    	let value = this.$options.filters.truncate(text, 70)
 		    	if (value.length < 30) {
@@ -69,7 +77,6 @@
 	  },
 	  filters: {
       truncate: function (text, length, suffix) {
-      	// console.log('text', text)
       	if(text !== null){
         	return text.substring(0, length) + suffix;
         }
